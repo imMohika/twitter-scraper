@@ -1,6 +1,6 @@
 import { addApiParams, requestApi } from './api';
 import { TwitterGuestAuth } from './auth';
-import { getUserIdByScreenName } from './profile';
+import { Profile, getUserIdByScreenName } from './profile';
 import { TimelineRaw, parseTweets, QueryTweetsResponse } from './timeline';
 import { getTweetTimeline } from './timeline-async';
 
@@ -49,6 +49,9 @@ export interface Tweet {
   urls: string[];
   userId?: string;
   username?: string;
+  user?: Profile;
+  replyCount?: number;
+  quoteCount?: number;
   videos: Video[];
   sensitiveContent?: boolean;
 }

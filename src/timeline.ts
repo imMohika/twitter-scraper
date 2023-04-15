@@ -56,6 +56,7 @@ export interface TimelineTweetRaw {
   in_reply_to_status_id_str?: string;
   place?: PlaceRaw;
   reply_count?: number;
+  quote_count?: number;
   retweet_count?: number;
   retweeted_status_id_str?: string;
   quoted_status_id_str?: string;
@@ -172,6 +173,8 @@ export function parseTweet(timeline: TimelineRaw, id: string): Tweet | null {
     id,
     hashtags: [],
     likes: tweet.favorite_count,
+    quoteCount: tweet.quote_count,
+    replyCount: tweet.reply_count,
     permanentUrl: `https://twitter.com/${username}/status/${id}`,
     photos: [],
     replies: tweet.reply_count,
@@ -180,6 +183,7 @@ export function parseTweet(timeline: TimelineRaw, id: string): Tweet | null {
     urls: [],
     userId: tweet.user_id_str,
     username,
+    user: parseProfile(user),
     videos: [],
   };
 
